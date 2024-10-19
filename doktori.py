@@ -12,6 +12,7 @@ def prochazeniDoktoru():
         except Exception as nenalezen:
             print(f"Chyba: {nenalezen}")
 
+
 # Inicializace webového prohlížeče
 driver = webdriver.Chrome()
 driver.get("https://www.lkcr.cz/seznam-lekaru?state=DATA_LIST&editing=0&paging.pageNo=0")
@@ -28,24 +29,23 @@ driver.find_element(By.CSS_SELECTOR, "#filterKrajId option[value='1']").click() 
 submit_button = driver.find_element(By.CSS_SELECTOR, ".btn-submit")
 submit_button.click()
 
-# Čekáme na načtení stránky
-# time.sleep(20)
+# Čekáme na manuální vyřešení capchi
 input("čekaní na enter - capcha")
-
-# Načtení prvního seznamu lékařů
-prochazeniDoktoru()
 
 # Načteme odkazy na stránky pro stránkování
 odkazy_na_stranky = driver.find_elements(By.CSS_SELECTOR, "a[href*='paging.pageNo']")
+pocet = len(odkazy_na_stranky)
 
 # Iterace přes všechny stránky
-for stranka in odkazy_na_stranky:
+for strankovani in range(1, pocet):
+    # Načte seznam lékařů
     prochazeniDoktoru()
     
+    # podchycení chybového načtení stránky se seznamem doktorů
     try:
-        header = driver.find_element(By.XPATH, '//h3[contains(text(), "Vyhledání lékaře podle příjmení a jména")]')
-        ActionChains(driver).scroll_to_element(header).perform()
-        stranka.click()
+        dalsi_seznam = driver.find_element(By.CSS_SELECTOR, f'a[href*="paging.pageNo={strankovani}"]')
+        ActionChains(driver).scroll_to_element(dalsi_seznam).perform()
+        dalsi_seznam.click()
         print('clicked')
     except:
         submit_button = driver.find_element(By.CSS_SELECTOR, '[value="Vyhledej"]')
@@ -54,4 +54,5 @@ for stranka in odkazy_na_stranky:
         input("cekání na enter - capcha")
         continue
 
+# Ukončení webového prohlížeče
 driver.quit()
