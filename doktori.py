@@ -29,7 +29,8 @@ submit_button = driver.find_element(By.CSS_SELECTOR, ".btn-submit")
 submit_button.click()
 
 # Čekáme na načtení stránky
-time.sleep(20)
+# time.sleep(20)
+input("čekaní na enter - capcha")
 
 # Načtení prvního seznamu lékařů
 prochazeniDoktoru()
@@ -39,25 +40,18 @@ odkazy_na_stranky = driver.find_elements(By.CSS_SELECTOR, "a[href*='paging.pageN
 
 # Iterace přes všechny stránky
 for stranka in odkazy_na_stranky:
-    time.sleep(5)
+    prochazeniDoktoru()
     
     try:
         header = driver.find_element(By.XPATH, '//h3[contains(text(), "Vyhledání lékaře podle příjmení a jména")]')
         ActionChains(driver).scroll_to_element(header).perform()
-        time.sleep(10)
         stranka.click()
         print('clicked')
-        prochazeniDoktoru()
     except:
-        print("kuk")
         submit_button = driver.find_element(By.CSS_SELECTOR, '[value="Vyhledej"]')
         ActionChains(driver).scroll_to_element(submit_button).perform()
-        time.sleep(10)
         submit_button.click()
-        time.sleep(20)
-        print('No buttons available')
-    finally:
-        prochazeniDoktoru()
-
+        input("cekání na enter - capcha")
+        continue
 
 driver.quit()
