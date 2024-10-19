@@ -25,7 +25,7 @@ submit_button = driver.find_element(By.CSS_SELECTOR, ".btn-submit")  # Změňte 
 submit_button.click()
 
 # Čekání na načtení nové stránky (můžete upravit dobu čekání podle potřeby)
-time.sleep(10)
+time.sleep(20)
 
 current_url = driver.current_url
 print(current_url)
