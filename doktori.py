@@ -61,23 +61,3 @@ for stranka in odkazy_na_stranky:
 
 
 driver.quit()
-
-
-
-[
-    "/seznam-lekaru?filterId=MTEyODY2MTE1OSwsWmRlbsSbaywsS292w6HFmQ%3D%3D&do[load]=1",
-    "/seznam-lekaru?filterId=MTEzMTU0NDE2MiwsTHVib8WhLCxLcmF0b2NodsOtbA%3D%3D&do[load]=1",
-    "/seznam-lekaru?filterId=MTEyOTQyNzE2MCwsT2xkxZlpY2gsLEtydW1wbA%3D%3D&do[load]=1",
-    "/seznam-lekaru?filterId=MTEzMjQ2NjE2MywsUGF2ZWwsLEt1YsOhdA%3D%3D&do[load]=1",
-    "/seznam-lekaru?filterId=MTE0NTM3ODE3NSwsSmFyb3NsYXYsLExldG9jaGE%3D&do[load]=1",
-    "/seznam-lekaru?filterId=MTE0NTU5NjE3NSwsUGV0ciwsTWFsdcWhZWs%3D&do[load]=1",
-    "/seznam-lekaru?filterId=NTE0MjIyMjE3MSwsQWxlbmEsLE1hdMSbamtvdsOh&do[load]=1",
-    "/seznam-lekaru?filterId=MTEzOTUxOTE3MCwsUGF2ZWwsLE3DrWth&do[load]=1",
-    "/seznam-lekaru?filterId=MTEzODM4MDE2OSwsTHVib23DrXIsLE1vdHnEjWth&do[load]=1",
-    "/seznam-lekaru?filterId=MTEyOTY0MzE2MCwsUGF2ZWwsLE5lY2h2w6F0YWw%3D&do[load]=1",
-    "/seznam-lekaru?filterId=MTE0MjY2ODE3MiwsTWFydGluLCxOZXXFvmls&do[load]=1",
-    "/seznam-lekaru?filterId=MTEyMjA3OTE1NCwsQWxvaXMsLFDDoWxlbsOtxI1law%3D%3D&do[load]=1",
-    "/seznam-lekaru?filterId=MTE1MjcyODE4MiwsQWxlxaEsLFBhxZnDrXplaw%3D%3D&do[load]=1",
-    "/seznam-lekaru?filterId=MTE0MjY3MTE3MiwsTmlrb2xhcywsUMOhdmVr&do[load]=1",
-    "/seznam-lekaru?filterId=MTEzODQyNTE2OSwsSmFyb3NsYXYsLFBpbG7DvQ%3D%3D&do[load]=1",
-]
