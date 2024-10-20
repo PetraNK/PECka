@@ -1,16 +1,31 @@
 from selenium import webdriver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
-import time
+import csv
+
+#Jednorázový zápis a vytvoření souboru
+csv_file = 'lekari_odkaz_na_detail.csv'
+with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file, delimiter=';')
+            writer.writerow(["Jméno", "URL"])  # Zápis hlavičky
 
 # Najde všechny odkazy na doktory na aktuální stránce
 def prochazeniDoktoru():
-    doktori_stranka = driver.find_elements(By.CSS_SELECTOR, "#form .item a:nth-child(1)")
-    for item in doktori_stranka:
-        try:
-            print(item.text)
-        except Exception as nenalezen:
-            print(f"Chyba: {nenalezen}")
+    # Cesta k souboru
+    csv_file = 'lekari_odkaz_na_detail.csv'
+    # Otevření CSV souboru pro zápis
+    with open(csv_file, mode='a', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file, delimiter=';')
+        
+        # Získání dat o doktorech z aktuální stránky - jméno a detail s url odkazem 
+        doktor_jmeno = driver.find_elements(By.CSS_SELECTOR, "#form .item a:nth-child(1)")
+        doktor_detail_url = driver.find_elements(By.CSS_SELECTOR, ".item a")
+
+        # Zapsání dat do CSV - 1 doktor, 1 řádek
+        for item, detail in zip(doktor_jmeno, doktor_detail_url):
+            jmeno = item.text
+            url = detail.get_attribute('href')
+            writer.writerow([jmeno, url])
 
 
 # Inicializace webového prohlížeče
