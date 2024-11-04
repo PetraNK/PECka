@@ -1,16 +1,32 @@
 from selenium import webdriver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
-import time
+import csv
+
+#Jednorázový zápis a vytvoření souboru
+csv_file = 'lekari_odkaz_na_detail.csv'
+with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file, delimiter=';')
+            writer.writerow(["Jméno", "URL"])  # Zápis hlavičky
 
 # Najde všechny odkazy na doktory na aktuální stránce
 def prochazeniDoktoru():
-    doktori_stranka = driver.find_elements(By.CSS_SELECTOR, "#form .item a:nth-child(1)")
-    for item in doktori_stranka:
-        try:
-            print(item.text)
-        except Exception as nenalezen:
-            print(f"Chyba: {nenalezen}")
+    # Cesta k souboru
+    csv_file = 'lekari_odkaz_na_detail.csv'
+    # Otevření CSV souboru pro zápis
+    with open(csv_file, mode='a', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file, delimiter=';')
+        
+        # Získání dat o doktorech z aktuální stránky - jméno a detail s url odkazem 
+        doktor_jmeno = driver.find_elements(By.CSS_SELECTOR, "#form .item a:nth-child(1)")
+        doktor_detail_url = driver.find_elements(By.CSS_SELECTOR, ".item a")
+
+        # Zapsání dat do CSV - 1 doktor, 1 řádek
+        for item, detail in zip(doktor_jmeno, doktor_detail_url):
+            jmeno = item.text
+            url = detail.get_attribute('href')
+            writer.writerow([jmeno, url])
+
 
 # Inicializace webového prohlížeče
 driver = webdriver.Chrome()
@@ -28,24 +44,23 @@ driver.find_element(By.CSS_SELECTOR, "#filterKrajId option[value='1']").click() 
 submit_button = driver.find_element(By.CSS_SELECTOR, ".btn-submit")
 submit_button.click()
 
-# Čekáme na načtení stránky
-# time.sleep(20)
+# Čekáme na manuální vyřešení capchi
 input("čekaní na enter - capcha")
-
-# Načtení prvního seznamu lékařů
-prochazeniDoktoru()
 
 # Načteme odkazy na stránky pro stránkování
 odkazy_na_stranky = driver.find_elements(By.CSS_SELECTOR, "a[href*='paging.pageNo']")
+pocet = len(odkazy_na_stranky)
 
 # Iterace přes všechny stránky
-for stranka in odkazy_na_stranky:
+for strankovani in range(1, pocet):
+    # Načte seznam lékařů
     prochazeniDoktoru()
     
+    # podchycení chybového načtení stránky se seznamem doktorů
     try:
-        header = driver.find_element(By.XPATH, '//h3[contains(text(), "Vyhledání lékaře podle příjmení a jména")]')
-        ActionChains(driver).scroll_to_element(header).perform()
-        stranka.click()
+        dalsi_seznam = driver.find_element(By.CSS_SELECTOR, f'a[href*="paging.pageNo={strankovani}"]')
+        ActionChains(driver).scroll_to_element(dalsi_seznam).perform()
+        dalsi_seznam.click()
         print('clicked')
     except:
         submit_button = driver.find_element(By.CSS_SELECTOR, '[value="Vyhledej"]')
@@ -54,4 +69,5 @@ for stranka in odkazy_na_stranky:
         input("cekání na enter - capcha")
         continue
 
+# Ukončení webového prohlížeče
 driver.quit()
