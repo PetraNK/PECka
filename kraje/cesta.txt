@@ -1,0 +1,24 @@
+C:/Czechitas kurz/PECka/PECka/kraje/1_StredoceskyKraj.csv
+C:/Czechitas kurz/PECka/PECka/kraje/1_StredoceskyKraj.csv
+C:/Czechitas kurz/PECka/PECka/kraje/2_JihoceskyKraj.csv
+C:/Czechitas kurz/PECka/PECka/kraje/3_PlzenskyKraj.csv
+C:/Czechitas kurz/PECka/PECka/kraje/4_KarlovarskyKraj.csv
+C:/Czechitas kurz/PECka/PECka/kraje/5_LibereckyKraj.csv
+C:/Czechitas kurz/PECka/PECka/kraje/6_KralovehradeckyKraj.csv
+C:/Czechitas kurz/PECka/PECka/kraje/7_PardubickyKraj.csv
+C:/Czechitas kurz/PECka/PECka/kraje/8_UsteckyKraj.csv
+C:/Czechitas kurz/PECka/PECka/kraje/9_JihomoravskyKraj.csv
+C:/Czechitas kurz/PECka/PECka/kraje/10_Vysocina.csv
+C:/Czechitas kurz/PECka/PECka/kraje/11_OlomouckyKraj.csv
+C:/Czechitas kurz/PECka/PECka/kraje/12_ZlinskyKraj.csv
+C:/Czechitas kurz/PECka/PECka/kraje/13_MoravskoslezskyKraj.csv
+C:/Czechitas kurz/PECka/PECka/kraje/14_Praha.csv
+
+
+
+
+
+
+
+
+ 
