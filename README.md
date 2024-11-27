@@ -22,4 +22,3 @@ Projekt pro kurz Czechitas Digitální akademie: Data, podzim 2024
    - skript pro vyhledání a stažení dostupných informací o zjištěných lékařích na googlu
    - Výsledkem je csv se těmito sloupci, jsou-li dostupné: jmeno_csv, jmeno_doktora, adresa, telefon, web, znamy_lekar_recenze,znamy_lekar_url, google_recenze, google_recenze_url 
    - zdrojový web: https://www.google.cz
-
