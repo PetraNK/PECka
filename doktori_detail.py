@@ -58,7 +58,7 @@ def zapis_neuspesne_url(url, neuspesne_url_soubor):
 def get_DoktorDetail(soubor):
     # Správné nastavení chromedriveru
     options = webdriver.ChromeOptions()
-    options.add_argument("--headless")  # Volitelně: spusťte Chrome bez GUI
+    options.add_argument("--headless")  # Volitelně: spustí Chrome bez GUI
     # Použití Service pro správnou inicializaci WebDriveru
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
@@ -96,7 +96,7 @@ def get_DoktorDetail(soubor):
                     # Získání údajů z tabulky:
                     vseobecne_info = driver.find_elements(By.CSS_SELECTOR, '.data tbody tr td')
 
-                    # slovníku pro uložení záznamů
+                    # Slovník pro uložení záznamů:
                     if jmeno_lekar == doktor:
                         vseobecne_data = {
                             'Jméno lékaře': doktor,
@@ -122,10 +122,8 @@ def get_DoktorDetail(soubor):
                     else:
                         print(f"lékař {lekar} se neshoduje se záznamem z webu")
                 except Exception as e:
-                    # print(f"Chyba při získávání údajů pro URL {url}: {e}")
                     zapis_neuspesne_url(url, neuspesne_url_soubor)
             else:
-                # print(f"Načtení stránky pro URL {url} selhalo.")
                 zapis_neuspesne_url(url, neuspesne_url_soubor)
 
     # Zavření prohlížeče po zpracování všech souborů
